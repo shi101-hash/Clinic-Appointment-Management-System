@@ -26,25 +26,48 @@ Appointment Management
 - Get all appointments
 - Get all appointments for a doctor
   
-Sample JSON
- Add a doctor:
+#API Testing with cURL
 
-{
-  "name": "Dr. Shifa",
+##Add a doctor:
+ 
+curl --location 'localhost:8080/doctors' \
+--header 'Content-Type: application/json' \
+--data '{
+  "name": "Dr. Arshi",
   "specialization": "Neurologist",
   "availableSlots": [
-    "2025-08-03T10:00",
-    "2025-08-03T11:00"
+    "2025-08-06T07:00",
+    "2025-08-06T08:00"
   ]
-}
+  }'
 
-Add a patient:
+##Get All doctors
 
-{
-  "name": "Saniya Siddiqui",
-  "age": 24,
-  "gender": "Female"
-}
+curl --location 'localhost:8080/doctors' \
+--data ''
 
+##Get Doctor ById
 
+curl --location 'localhost:8080/doctors/1' \
+--data ''
 
+##Add a patient:
+
+curl --location 'localhost:8080/patients' \
+--header 'Content-Type: application/json' \
+--data '    {
+        
+        "name": "Ayaan",
+        "age": 30,
+        "gender":"Male"
+    }'
+
+##Get Patients
+
+curl --location 'localhost:8080/patients' \
+--data ''
+
+##Book Appointment
+
+curl --location --request POST 'localhost:8080/appointments?doctorId=1&patientId=1&slot=2025-08-06T12%3A00' \
+--data ''
